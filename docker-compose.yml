@@ -37,3 +37,9 @@ services:
     ports:
       - "7070:7070"
     command: ["/parca"]
+
+  zookeeper:
+    hostname: zookeeper
+    image: zookeeper:latest
+    ports:
+      - "2181:2181"

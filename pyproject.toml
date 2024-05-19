@@ -11,6 +11,8 @@ flask = "2.3.3"
 requests = "^2.31.0"
 opentelemetry-distro = "^0.44b0"
 opentelemetry-exporter-otlp = "^1.23.0"
+zc-zk = "^2.1.0"
+kazoo = "^2.10.0"
 
 
 [build-system]
