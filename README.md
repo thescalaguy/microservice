@@ -32,4 +32,10 @@ You can now run individual services using their start scripts. In two separate t
 ```shell
 # Start the "second" microservice
 ./second.sh
+```  
+
+Once the two services are up and running, you can make a request to the "first" service using the following curl command.  
+
+```shell
+curl -s -XPOST localhost:5000 | jq .
 ```
