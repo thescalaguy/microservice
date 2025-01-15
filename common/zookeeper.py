@@ -56,7 +56,7 @@ def _register_service():
     global _zk
 
     service = os.environ.get("SERVICE")
-    host = socket.getfqdn()
+    host = "localhost"
     port = os.environ.get("PORT")
 
     assert service

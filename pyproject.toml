@@ -9,10 +9,13 @@ readme = "README.md"
 python = "^3.12"
 flask = "2.3.3"
 requests = "^2.31.0"
-opentelemetry-distro = "^0.44b0"
-opentelemetry-exporter-otlp = "^1.23.0"
+opentelemetry-distro = "^0.50b0"
+opentelemetry-exporter-otlp = "^1.29.0"
 zc-zk = "^2.1.0"
 kazoo = "^2.10.0"
+attrs = "^24.3.0"
+python-json-logger = "^3.2.1"
+opentelemetry-instrumentation-logging = "0.50b0"
 
 
 [build-system]

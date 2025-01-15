@@ -10,14 +10,20 @@ processors:
   batch:
 
 exporters:
+  kafka:
+    encoding: otlp_json
+    brokers:
+      - kafka:9092
+    protocol_version: 2.0.0
   otlp/jaeger:
     endpoint: jaeger:4317
+    tls:
+      insecure: true
   debug:
     verbosity: detailed
   prometheus:
     endpoint: 0.0.0.0:8889
     namespace: default
-
 
 extensions:
   health_check:
@@ -26,6 +32,9 @@ extensions:
 
 service:
   extensions: [health_check, pprof, zpages]
+  telemetry:
+    logs:
+      encoding: json
   pipelines:
     traces:
       receivers: [otlp]
@@ -37,5 +46,4 @@ service:
       exporters: [prometheus]
     logs:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [debug]
+      exporters: [kafka]
