@@ -4,6 +4,7 @@ export PYTHONPATH=.
 export SERVICE=first
 export PORT=8000
 export OTEL_EXPORTER_OTLP_INSECURE=true
+export OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=false
 
 opentelemetry-instrument \
     --traces_exporter otlp \
