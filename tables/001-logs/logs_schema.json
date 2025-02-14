@@ -1,0 +1,25 @@
+{
+  "schemaName": "logs",
+  "enableColumnBasedNullHandling": true,
+  "dimensionFieldSpecs": [
+    {
+      "name": "scope",
+      "dataType": "JSON"
+    },
+    {
+      "name": "severity",
+      "dataType": "JSON"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "time_unix_millis",
+      "dataType": "LONG",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS",
+      "notNull": true
+    }
+  ],
+  "primaryKeyColumns": [],
+  "metricFieldSpecs": []
+}

@@ -2,7 +2,7 @@
 
 export PYTHONPATH=.
 export SERVICE=second
-export PORT=9000
+export PORT=9001
 export OTEL_EXPORTER_OTLP_INSECURE=true
 
 opentelemetry-instrument \

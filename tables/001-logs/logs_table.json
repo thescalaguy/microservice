@@ -1,0 +1,66 @@
+{
+  "tableName": "logs",
+  "tableType": "REALTIME",
+  "query": {
+    "disableGroovy": false
+  },
+  "segmentsConfig": {
+    "timeColumnName": "time_unix_millis",
+    "timeType": "MILLISECONDS",
+    "schemaName": "logs",
+    "replicasPerPartition": "1",
+    "retentionTimeValue": "365",
+    "retentionTimeUnit": "DAYS"
+  },
+  "tenants": {},
+  "fieldConfigList": [],
+  "tableIndexConfig": {
+    "noDictionaryColumns": [],
+    "invertedIndexColumns": [],
+    "rangeIndexColumns": [],
+    "createInvertedIndexDuringSegmentGeneration": true,
+    "loadMode": "MMAP"
+  },
+  "metadata": {
+    "customConfigs": {}
+  },
+  "ingestionConfig": {
+    "streamIngestionConfig": {
+      "streamConfigMaps": [
+        {
+          "realtime.segment.flush.threshold.rows": "0",
+          "stream.kafka.decoder.prop.format": "JSON",
+          "key.serializer": "org.apache.kafka.common.serialization.ByteArraySerializer",
+          "stream.kafka.decoder.class.name": "org.apache.pinot.plugin.stream.kafka.KafkaJSONMessageDecoder",
+          "streamType": "kafka",
+          "value.serializer": "org.apache.kafka.common.serialization.ByteArraySerializer",
+          "stream.kafka.consumer.type": "LOWLEVEL",
+          "realtime.segment.flush.threshold.segment.rows": "50000",
+          "stream.kafka.broker.list": "kafka:9092",
+          "realtime.segment.flush.threshold.time": "3600000",
+          "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka20.KafkaConsumerFactory",
+          "stream.kafka.consumer.prop.auto.offset.reset": "smallest",
+          "stream.kafka.topic.name": "otlp_logs"
+        }
+      ]
+    },
+    "transformConfigs": [
+      {
+        "columnName": "scope",
+        "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].scope.name'), '$[0]')"
+      },
+      {
+        "columnName": "severity",
+        "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].severityText'), '$[0]')"
+      },
+      {
+        "columnName": "time_unix_millis",
+        "transformFunction": "divide(jsonPathLong(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].timeUnixNano'), '$[0]'), 1000)"
+      }
+    ]
+  },
+  "routing": {
+    "segmentPrunerTypes": ["time"],
+    "instanceSelectorType": "strictReplicaGroup"
+  }
+}

@@ -1,0 +1,6 @@
+curl -F schemaName=@tables/001-logs/logs_schema.json localhost:9000/schemas | jq .
+curl -XPOST -H 'Content-Type: application/json' -d @tables/001-logs/logs_table.json localhost:9000/tables | jq .
+
+
+curl -XDELETE localhost:9000/tables/logs | jq .
+curl -XDELETE localhost:9000/schemas/logs | jq .
