@@ -54,8 +54,24 @@
         "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].severityText'), '$[0]')"
       },
       {
+        "columnName": "log",
+        "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].body.stringValue'), '$[0]')"
+      },
+      {
+        "columnName": "otel_span_id",
+        "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].attributes[?(@.key==''otelSpanID'')].value.stringValue'), '$[0]')"
+      },
+      {
+        "columnName": "otel_trace_id",
+        "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].attributes[?(@.key==''otelTraceID'')].value.stringValue'), '$[0]')"
+      },
+      {
+        "columnName": "otel_service_name",
+        "transformFunction": "jsonPathString(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].attributes[?(@.key==''otelServiceName'')].value.stringValue'), '$[0]')"
+      },
+      {
         "columnName": "time_unix_millis",
-        "transformFunction": "divide(jsonPathLong(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].timeUnixNano'), '$[0]'), 1000)"
+        "transformFunction": "divide(jsonPathLong(jsonPathArray(resourceLogs, '$[*].scopeLogs[*].logRecords[*].timeUnixNano'), '$[0]'), 1000000)"
       }
     ]
   },

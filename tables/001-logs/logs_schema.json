@@ -4,11 +4,27 @@
   "dimensionFieldSpecs": [
     {
       "name": "scope",
-      "dataType": "JSON"
+      "dataType": "STRING"
     },
     {
       "name": "severity",
-      "dataType": "JSON"
+      "dataType": "STRING"
+    },
+    {
+      "name": "log",
+      "dataType": "STRING"
+    },
+    {
+      "name": "otel_span_id",
+      "dataType": "STRING"
+    },
+    {
+      "name": "otel_trace_id",
+      "dataType": "STRING"
+    },
+    {
+      "name": "otel_service_name",
+      "dataType": "STRING"
     }
   ],
   "dateTimeFieldSpecs": [
