@@ -13,9 +13,15 @@
     "retentionTimeUnit": "DAYS"
   },
   "tenants": {},
-  "fieldConfigList": [],
+  "fieldConfigList": [
+    {
+      "name": "log",
+      "encodingType": "RAW",
+      "indexTypes": ["TEXT"]
+    }
+  ],
   "tableIndexConfig": {
-    "noDictionaryColumns": [],
+    "noDictionaryColumns": ["log"],
     "invertedIndexColumns": [],
     "rangeIndexColumns": [],
     "createInvertedIndexDuringSegmentGeneration": true,
